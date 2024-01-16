@@ -76,7 +76,7 @@ filter_results <- function(unfiltered_fgsea_results, adjp_thresh, nes_thresh){
   }else if (nes_thresh == 'both'){
     for (i in names(unfiltered_fgsea_results)){
       curr_gep_res = unfiltered_fgsea_results[[i]]
-      filtered_fgsea_results[[i]] = curr_gep_res[which(curr_gep_res[,"padj"]),]
+      filtered_fgsea_results[[i]] = curr_gep_res[which(curr_gep_res[,"padj"] < adjp_thresh),]
     }
     save(filtered_fgsea_results, file = paste(output_prefix, "_filtered_padj_", adjp_thresh, "_nes_", nes_thresh, ".Rdat", sep = ""))
     return(filtered_fgsea_results)
