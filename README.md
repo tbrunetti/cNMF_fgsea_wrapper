@@ -5,6 +5,7 @@ A set of wrapper functions and a run scripts for users to run fgsea on the spect
 All code was tested on `R v4.2.2` using the [fgsea R Bioconductor package](https://bioconductor.org/packages/release/bioc/html/fgsea.html) v1.22.0 on Linux OS flavor `Ubuntu 20.04.5 LTS, focal`.  
 
 * [fgsea](https://bioconductor.org/packages/release/bioc/html/fgsea.html)  
+* [clusterProfiler](https://github.com/YuLab-SMU/clusterProfiler)  
 
 ## Setup and Usage  
 
