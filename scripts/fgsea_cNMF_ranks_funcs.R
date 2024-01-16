@@ -1,4 +1,5 @@
 library(fgsea)
+library(clusterProfiler) 
 
 # make new object class to organize results from step 1
 setClass(Class = "step1_fgsea_result_obj", slots=list(unfiltered="list", gmt_large_list="list", input_gsea_datasets="list"))
@@ -27,7 +28,7 @@ calculate_enrichment <- function(gmt_file_input, output_prefix, cnmf_spectra_sco
   
   
   # read in gmt files of interest for pathway and gene sets of interest
-  gmt = read.gmt(gmtfile = gmt_file_input)
+  gmt = clusterProfiler::read.gmt(gmtfile = gmt_file_input)
   
   # data wrangle gmt file into a large list object
   transformed_gmt = gmt %>% group_by(term) %>% summarise(gene_list = str_c(sort(gene), collapse = ","), .groups = 'drop')
