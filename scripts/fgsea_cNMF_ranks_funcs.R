@@ -20,7 +20,10 @@ calculate_enrichment <- function(gmt_file_input, output_prefix, cnmf_spectra_sco
   # stores all of your GEPs and spectra scores sorted in decreasing order (pos -> neg) as a large list object
   input_gsea_datasets = list() 
   for (gep in colnames(cnmf_spectra_scores)){
-    all_sorted_scores = cnmf_spectra_scores[order(cnmf_spectra_scores[,gep], decreasing = T),]
+    # by setting drop = FALSE, it keep only the columns listed and drops the rest; 
+    # this is important particularly when there is only one column and subsetting turns this into a list instead of df
+    # which throws an incorrect dimensions errors; it makes it so it doesn't "drop" the structure into the lowest dimension
+    all_sorted_scores = cnmf_spectra_scores[order(cnmf_spectra_scores[,gep], decreasing = T),,drop = FALSE]
     gep_specific_sorted_scores = all_sorted_scores[,gep]
     gsea_for_gep_scores = gep_specific_sorted_scores[!is.na(gep_specific_sorted_scores)]
     input_gsea_datasets[[gep]] = gsea_for_gep_scores
